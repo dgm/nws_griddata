@@ -1,0 +1,10 @@
+{
+  "domain": "nws_griddata",
+  "name": "NWS Grid Data",
+  "documentation": "https://github.com/dgm/nws_griddata",
+  "issue_tracker": "https://github.com/dgm/nws_griddata/issues",
+  "codeowners": [],
+  "requirements": [],
+  "version": "1.0.0",
+  "iot_class": "cloud_polling"
+}

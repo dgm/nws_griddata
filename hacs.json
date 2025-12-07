@@ -1,0 +1,5 @@
+{
+  "name": "NWS Grid Data",
+  "render_readme": true,
+  "domains": ["sensor"]
+}
