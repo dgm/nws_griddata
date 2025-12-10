@@ -49,7 +49,7 @@ Custom Home Assistant integration that fetches NWS (National Weather Service) gr
 
 ## Sensor Data
 
-The integration creates three sensors:
+The integration creates four sensors:
 
 - **sensor.nws_wind_speed_{lat}_{lon}**
   - State: Number of data points
@@ -60,6 +60,10 @@ The integration creates three sensors:
   - Attributes: `values` (full time-series), `uom` (unit of measure), `gridId`, `gridX`, `gridY`, `updateTime`
 
 - **sensor.nws_temperature_{lat}_{lon}**
+  - State: Number of data points
+  - Attributes: `values` (full time-series), `uom` (unit of measure), `gridId`, `gridX`, `gridY`, `updateTime`
+
+- **sensor.nws_wind_gust_{lat}_{lon}**
   - State: Number of data points
   - Attributes: `values` (full time-series), `uom` (unit of measure), `gridId`, `gridX`, `gridY`, `updateTime`
 
@@ -80,4 +84,4 @@ sensor:
     longitude: -74.0060
 ```
 
-This will create three sensors with the latest NWS gridded weather data, each containing full time-series data in their attributes.
+This will create four sensors with the latest NWS gridded weather data, each containing full time-series data in their attributes.

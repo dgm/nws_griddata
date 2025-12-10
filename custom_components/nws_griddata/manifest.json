@@ -5,6 +5,6 @@
   "issue_tracker": "https://github.com/dgm/nws_griddata/issues",
   "codeowners": [],
   "requirements": [],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "iot_class": "cloud_polling"
 }

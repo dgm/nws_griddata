@@ -26,6 +26,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         NWSWindSpeedSensor(coordinator, lat, lon),
         NWSWindDirectionSensor(coordinator, lat, lon),
         NWSTemperatureSensor(coordinator, lat, lon),
+        NWSWindGustSensor(coordinator, lat, lon),
     ], True)
 
 class NWSDataCoordinator:
@@ -95,6 +96,8 @@ class NWSDataCoordinator:
                         "windDirectionUom": props.get("windDirection", {}).get("uom"),
                         "temperature": props.get("temperature", {}).get("values", []),
                         "temperatureUom": props.get("temperature", {}).get("uom"),
+                        "windGust": props.get("windGust", {}).get("values", []),
+                        "windGustUom": props.get("windGust", {}).get("uom"),
                         "gridId": self._grid_id,
                         "gridX": self._grid_x,
                         "gridY": self._grid_y,
@@ -200,4 +203,28 @@ class NWSTemperatureSensor(NWSBaseSensor):
         attrs = super().extra_state_attributes
         attrs["values"] = self._coordinator.data.get("temperature", [])
         attrs["uom"] = self._coordinator.data.get("temperatureUom")
+        return attrs
+
+class NWSWindGustSensor(NWSBaseSensor):
+    def __init__(self, coordinator, lat, lon):
+        super().__init__(coordinator, lat, lon, "windGust")
+
+    @property
+    def name(self):
+        return f"NWS Wind Gust {self._lat},{self._lon}"
+
+    @property
+    def unique_id(self):
+        return f"nws_wind_gust_{self._lat}_{self._lon}"
+
+    @property
+    def state(self):
+        values = self._coordinator.data.get("windGust", [])
+        return len(values)
+
+    @property
+    def extra_state_attributes(self):
+        attrs = super().extra_state_attributes
+        attrs["values"] = self._coordinator.data.get("windGust", [])
+        attrs["uom"] = self._coordinator.data.get("windGustUom")
         return attrs
